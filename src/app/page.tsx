@@ -7,18 +7,22 @@ export default function Home() {
   //   <div>temp</div>
   // )
   const [data, setData] = useState(null)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/users') // adjust if your endpoint is different
+        const res = await fetch('/api/users')
         if (!res.ok) throw new Error('Failed to fetch users')
         const json = await res.json()
         setData(json)
-      } catch (err) {
-        setError(err.message)
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message)
+        } else {
+          setError(String(err))
+        }
       } finally {
         setLoading(false)
       }
