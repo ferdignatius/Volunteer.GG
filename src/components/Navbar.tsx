@@ -11,26 +11,30 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/resizable-navbar"
+import { signIn } from "next-auth/react";
+import { useRouter } from 'next/navigation';
 
 export default function CustomizedNavbar(){
-    const navItems = [
-        {
-            name: "Events",
-            link: "/events",
-        },
-        {
-            name: "Leaderboard",
-            link: "/leaderboard",
-        },
-        {
-            name: "Shop",
-            link: "/shop",
-        },
-                {
-            name: "About Us",
-            link: "/about",
-        },
-    ]
+
+  const router = useRouter();
+  const navItems = [
+    {
+        name: "Events",
+        link: "/events",
+    },
+    {
+        name: "Leaderboard",
+        link: "/leaderboard",
+    },
+    {
+        name: "Shop",
+        link: "/shop",
+    },
+            {
+        name: "About Us",
+        link: "/about",
+    },
+  ]
     
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -41,8 +45,8 @@ export default function CustomizedNavbar(){
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="secondary">Login</NavbarButton>
-            <NavbarButton variant="primary">Register</NavbarButton>
+            <NavbarButton variant="dark" onClick={() => signIn()}>Sign In</NavbarButton>
+            <NavbarButton variant="primary" onClick={() => router.push('/auth/register')}>Sign Up</NavbarButton>
           </div>
         </NavBody>
  

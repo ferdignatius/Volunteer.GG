@@ -1,16 +1,13 @@
-import { Category } from './category'
-
-export interface Event {
-  id: string
-  name: string
-  base_points: number
-  final_points: number
-  photos: string[]
-  categories: Category[]
-  description: string
-  start_datetime: string
-  end_datetime: string
-  location: string
-  organization_name: string
-  friend_count?: number
+export default interface EventAttributes {
+  id: number;
+  name: string;
+  location: string;
+  base_points: number;
+  final_points: number;
+  description?: string;
+  start_datetime: Date;
+  end_datetime: Date;
+  certificate_url?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

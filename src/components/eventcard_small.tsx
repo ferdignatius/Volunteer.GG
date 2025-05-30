@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
-import { img_temp } from '../dummy_data_frontend'
+import { img_temp } from '../dummies/dummy_data_frontend'
 import { Event } from '../types/event'
 
 interface Props {
@@ -28,7 +28,7 @@ const EventCardSmall = ({ event } : Props) => {
         {/* Image container */}
         <div className="relative w-full h-[160px] flex-shrink-0">
           <img
-            src={photos && photos.length > 0 ? photos[0] : img_temp}
+            src={photos && photos.length > 0 ? photos[0].img_url : img_temp}
             alt={name}
             className="w-full h-full object-cover block"
           />

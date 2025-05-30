@@ -243,7 +243,7 @@ export const NavbarLogo = () => {
         height={30}
         className="bg-black p-1 rounded-lg dark:filter dark:invert"
       />
-      <span className="font-medium text-black dark:text-white">VolunteerGG</span>
+      <span className="font-medium text-black bg-white px-2 py-1 rounded-lg dark:text-white">VolunteerGG</span>
     </a>
   );
 };
