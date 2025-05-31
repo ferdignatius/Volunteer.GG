@@ -10,9 +10,9 @@ export default function Shop() {
         <SearchBarShop />
         <div className="shop-container">
             <div>
-                <ShopCarouselSpecial />
+                {/* <ShopCarouselSpecial /> */}
                 <ShopCarouselNormal />
-                <ShopCarouselPaid />
+                {/* <ShopCarouselPaid /> */}
             </div>
         </div>
       </main>
