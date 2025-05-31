@@ -1,4 +1,4 @@
-export interface ErrorAttributes {
+export default interface ErrorAttributes {
     status: number,
     message: string
 }

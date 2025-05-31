@@ -1,5 +1,5 @@
 export default interface EventCategoryAttributes {
     id: number
-    name: string
+    category: string
     color: string
 }

@@ -1,10 +1,10 @@
 'use client'
 import React, { useState } from 'react';
-import EventCardBig from './eventcard_big'
-import { Event } from '../types/event'
+import EventCardBig from './EventCardBig'
+import { EventAttributes } from '@/types'
 
 interface Props {
-  events: Event[]
+  events: EventAttributes[]
 }
 
 const EventCarousel = ({ events } : Props) => {

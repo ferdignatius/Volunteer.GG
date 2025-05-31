@@ -2,9 +2,7 @@ import { DataTypes, Optional, Model, Sequelize } from 'sequelize';
 import sequelize from '../sequelize'
 import { UserAttributes } from '@/types'
 
-type UserCreationAttributes = Optional<UserAttributes, 'id' | 'createdAt' | 'updatedAt'>
-
-const User = sequelize.define<Model<UserAttributes, UserCreationAttributes>>('User', {
+const User = sequelize.define('User', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -30,6 +28,7 @@ const User = sequelize.define<Model<UserAttributes, UserCreationAttributes>>('Us
   bio: {
     type: DataTypes.TEXT,
     allowNull: true,
+    defaultValue: 'you can write anything...'
   },
   city: {
     type: DataTypes.STRING,

@@ -1,8 +1,3 @@
-import AboutUsHero from '../../components/AboutUsHero'
-import AboutUsSDG from '../../components/AboutUsSDG'
-import AboutUsFeatures from '../../components/AboutUsFeatures'
-import AffiliatesCarousel from '../../components/AffiliatesCarousel'
-import Image from "next/image"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
@@ -114,10 +109,5 @@ export default function AboutUs() {
         </section>
 
       </main>
-        //   <AboutUsHero />
-        //   <AboutUsSDG />
-        //   <AboutUsFeatures />
-          // <AffiliatesCarousel />
-        // </main>
   )
 }

@@ -15,6 +15,7 @@ import UserAchievementAttributes from '@/types/userachievement'
 import UserCertificateAttributes from '@/types/usercertificate'
 import UserPurchaseAttributes from '@/types/userpurchase'
 import UserRelationAttributes from '@/types/userrelation'
+import ErrorAttributes from '@/types/error'
 
 export type {
   UserAttributes,
@@ -33,5 +34,6 @@ export type {
   UserAchievementAttributes,
   UserCertificateAttributes,
   UserPurchaseAttributes,
-  UserRelationAttributes
+  UserRelationAttributes,
+  ErrorAttributes
 }

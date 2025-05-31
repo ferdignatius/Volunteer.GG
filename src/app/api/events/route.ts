@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import { Event, EventImage, CategorizedEvent, EventCategory, Organization, EventParticipant, OrganizationMember } from '@/db/models'
-import { EventCategoryProps } from '@/types';
+import { EventCategoryAttributes } from '@/types';
 import { DevBundlerService } from 'next/dist/server/lib/dev-bundler-service';
-const { Op } = require('sequelize')
+import { Op } from 'sequelize'
 
 interface Props {
   event_id: number
   category_id: number
-  EventCategory: EventCategoryProps
+  EventCategory: EventCategoryAttributes
 }
 
 export async function GET() {

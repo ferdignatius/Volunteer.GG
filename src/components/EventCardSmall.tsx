@@ -2,10 +2,15 @@
 import React from 'react'
 import Link from 'next/link'
 import { img_temp } from '../dummies/dummy_data_frontend'
-import { Event } from '../types/event'
+import { EventAttributes, EventCategoryAttributes, EventImageAttributes } from '@/types'
 
 interface Props {
-  event: Event
+  event: EventAttributes & {
+    photos: EventImageAttributes[]
+    categories: EventCategoryAttributes[]
+    friend_count?: number
+    organization_name?: string
+  }
 }
 
 const EventCardSmall = ({ event } : Props) => {
@@ -14,10 +19,8 @@ const EventCardSmall = ({ event } : Props) => {
   }
 
   const {
-    id, name, base_points, photos,
-    categories, description, end_datetime,
-    start_datetime, location, final_points,
-    organization_name, friend_count
+    id, name, photos, categories, start_datetime, 
+    location, final_points, friend_count
   } = event
 
   const event_details_url = `/event-detail/${id}`

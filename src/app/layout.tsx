@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Navbar from '../components/navbar'
+import Navbar from '../components/Navbar'
 import "./globals.css";
 import SessionProviderWrapper from './nextauth_provider'
 import ReactQueryProvider from './tanstack_provider'
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} relative antialiased pt-20 pb-10 min-h-screen h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} relative antialiased pt-20 min-h-screen h-auto`}
       >
         <SessionProviderWrapper>
           <ReactQueryProvider>

@@ -8,8 +8,9 @@ import {
   IconBrandGoogle,
   IconBrandOnlyfans,
 } from "@tabler/icons-react"
+import Link from "next/link";
 
-export default function SignupFormDemo() {
+export default function Signup() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
@@ -19,25 +20,29 @@ export default function SignupFormDemo() {
       <img 
       src="/assets/AboutUsFeatureImg4.png" 
       alt="no image" 
-      className="top-0 right-0 w-screen h-screen fixed z-[-1] object-cover"/>
+      className="top-0 right-0 w-screen h-screen fixed z-[-1] object-cover blur-sm scale-105"/>
       <h2 className="text-xl font-bold text-neutral-800 dark:text-neutral-200 text-center">
         Welcome to Volunteer.GG
       </h2>
       <p className="mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300 text-center">
-        When service meets ambition, we change the world—together.
+        When service meets ambition, we change the world—together. Join us!
       </p>
 
-      <form className="my-8" onSubmit={handleSubmit}>
-        <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
+      <form className="my-4" onSubmit={handleSubmit}>
+        {/* <div className="mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2">
           <LabelInputContainer>
-            <Label htmlFor="name">Name</Label>
-            <Input id="name" placeholder="ex. John Doe" type="text" />
-          </LabelInputContainer>
-          {/* <LabelInputContainer>
             <Label htmlFor="lastname">Email</Label>
             <Input id="lastname" placeholder="enter your email here" type="text" />
-          </LabelInputContainer> */}
-        </div>
+          </LabelInputContainer>
+        </div> */}
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="name">Name</Label>
+          <Input id="name" placeholder="ex. John Doe" type="text" />
+        </LabelInputContainer>
+        <LabelInputContainer className="mb-4">
+          <Label htmlFor="password">City, Province, Country</Label>
+          <Input id="password" placeholder="ex. (Jakarta, DKI Jakarta, Indonesia)" type="text" />
+        </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
           <Input id="email" placeholder="ex. john.doe@example.com" type="email" />
@@ -54,16 +59,18 @@ export default function SignupFormDemo() {
             type="twitterpassword"
           />
         </LabelInputContainer> */}
-
+        <p className="text-sm text-center">Already have an account? 
+          <Link className="text-blue-500" href="/auth/signin"> <u>Sign in here!</u></Link>
+        </p>
         <button
-          className="group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+          className="mt-4 group/btn relative block h-10 w-full rounded-md bg-gradient-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
           type="submit"
         >
           Sign up &rarr;
           <BottomGradient />
         </button>
 
-        <div className="my-8 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
+        <div className="my-6 h-[1px] w-full bg-gradient-to-r from-transparent via-neutral-300 to-transparent dark:via-neutral-700" />
 
         <div className="flex flex-col space-y-4">
           {/* <button

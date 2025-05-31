@@ -5,8 +5,8 @@ export default interface EventAttributes {
   base_points: number;
   final_points: number;
   description?: string;
-  start_datetime: Date;
-  end_datetime: Date;
+  start_datetime: string;
+  end_datetime: string;
   certificate_url?: string;
   createdAt?: Date;
   updatedAt?: Date;

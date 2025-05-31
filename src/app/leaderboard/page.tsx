@@ -1,59 +1,34 @@
-const users = [
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  },
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  },
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  },
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  },
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  },
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  },
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  },
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  },
-  {
-    img_url: 'temp',
-    name: 'john doe',
-    accumulated_points: 2000,
-  }
-]
-
-
+"use client"
+import ErrorBox from "@/components/ErrorBox";
+import LoadingBox from "@/components/LoadingBox";
+import { useUsers } from "@/hooks/useUsers";
+import { UserAttributes } from "@/types";
 
 export default function Leaderboard() {
+
+  const {
+    data: users,
+    isLoading,
+    isError,
+    error
+  } = useUsers()
+
+  if(isLoading){
+    return <LoadingBox message="Loading..."/>
+  }
+
+  if(isError){
+    return <ErrorBox error={error as any}/>
+  }
 
   return (
     <div className="h-full flex flex-col mx-48 justify-center relative">
         {/* <LeaderboardAreaSelector /> */}
-        <div className="absolute flex flex-row top-0 right-0 bg-orange-100 rounded-full">
+        <div className="ml-auto flex flex-row top-0 right-0 bg-orange-100 rounded-full">
+          
+          <div className="cursor-pointer px-6 py-1 text-gray-800 font-sans text-base rounded-full transition-colors duration-300 hover:bg-[#ffe0cc] hover:text-black">
+            All
+          </div>
           <div className="cursor-pointer px-6 py-1 text-gray-800 font-sans text-base rounded-full transition-colors duration-300 hover:bg-[#ffe0cc] hover:text-black">
             National
           </div>
@@ -65,32 +40,31 @@ export default function Leaderboard() {
           </div>
         </div>
 
-
         {/* <LeaderboardTopThree /> */}
         <div className="w-full h-auto flex justify-center gap-4 my-4">
           <div 
           className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 mt-8 bg-gray-200 shadow-lg">
             <h1 className="text-5xl mb-2"><b>2#</b></h1>
-            <p>{users && users[1].name}</p>
-            <p>{users && users[1].accumulated_points} Pts</p>
+            <p className="text-center">{users && users[1].name}</p>
+            <p className="text-center">{users && users[1].monthly_points} Pts</p>
           </div>
           <div 
           className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 bg-yellow-200 shadow-lg">
             <h1 className="text-5xl mb-2"><b>1#</b></h1>
-            <p>{users && users[0].name}</p>
-            <p>{users && users[0].accumulated_points} Pts</p>
+            <p className="text-center">{users && users[0].name}</p>
+            <p className="text-center">{users && users[0].monthly_points} Pts</p>
           </div>
           <div 
           className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 mt-16 bg-orange-200 shadow-lg">
             <h1 className="text-5xl mb-2"><b>3#</b></h1>
-            <p>{users && users[2].name}</p>
-            <p>{users && users[2].accumulated_points} Pts</p>
+            <p className="text-center">{users && users[2].name}</p>
+            <p className="text-center">{users && users[2].monthly_points} Pts</p>
           </div>
         </div>
 
         {/* <LeaderboardRankings/> */}
         <div className="w-full flex flex-grow flex-col min-h-48 h-full gap-2 overflow-scroll p-2">
-          {users && users.slice(3).map((user, index) => (
+          {users && users.slice(3).map((user : UserAttributes, index : number) => (
             <div key={index} className="flex items-center p-3 rounded-lg transition-colors duration-200 bg-orange-100 shadow-md">
               <div className="text-2xl font-bold text-gray-800 mr-4 min-w-[40px] text-left">
                 #{index + 4}
@@ -98,7 +72,7 @@ export default function Leaderboard() {
               <div className="w-9 h-9 rounded-full bg-gray-300 mr-4 flex-shrink-0"></div>
               <div className="flex-grow text-lg text-gray-700">{user.name}</div>
               <div className="text-base font-medium text-gray-600 min-w-[70px] text-right">
-                {user.accumulated_points} Pts
+                {user.monthly_points} Pts
               </div>
             </div>
           ))}

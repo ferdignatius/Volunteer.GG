@@ -1,10 +1,10 @@
 "use client"
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Error } from '../types/error'
+import { ErrorAttributes } from '@/types'
 
 interface Props {
-    error: Error
+    error: ErrorAttributes
 }
 
 const ErrorBox = ({ error } : Props) => {

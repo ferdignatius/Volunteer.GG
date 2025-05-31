@@ -6,7 +6,7 @@ interface Props {
   handleSearch: (search: string) => void
 }
 
-const EventSearchbar = ({ search, handleSearch }: Props) => {
+const SearchBar = ({ search, handleSearch }: Props) => {
   return (
     <form className="flex items-center w-full h-12 bg-gray-200 rounded-md overflow-hidden border border-gray-300 shadow-sm">
       <input
@@ -26,4 +26,4 @@ const EventSearchbar = ({ search, handleSearch }: Props) => {
   );
 };
 
-export default EventSearchbar
+export default SearchBar

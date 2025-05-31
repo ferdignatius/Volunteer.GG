@@ -2,14 +2,15 @@ import { User } from "@/db/models";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { UserAttributes } from "@/types";
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: "email", type: "email" },
+        password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
         const { email, password } = credentials as {
@@ -19,7 +20,7 @@ const handler = NextAuth({
 
         const user = await User.findOne({
           attributes: {
-            exclude: ['password','createdAt','updatedAt']
+            exclude: ['createdAt','updatedAt'],
           },
           where: {
             email: email,
@@ -27,29 +28,25 @@ const handler = NextAuth({
           }
         })
 
-        if (!user || !(await bcrypt.compare(password, user.password))) {
+        // if (!user || !(await bcrypt.compare(password, user.getDataValue('password')))) {
+        //   return null
+        // }
+
+        if (!user || !(password == user.getDataValue('password'))) {
           return null
         }
-
-        // 🔐 Replace this with real DB lookup
-        // if (email === "user@example.com" && password === "password123") {
-        //   return {
-        //     id: "1",
-        //     name: "Demo User",
-        //     email: "user@example.com",
-        //   }
-        // }
-        if(user){
-          return user.get({ plain: true })
-        }
-
-        // ❌ Invalid login
-        return null;
+        return user.get({ plain: true })
       },
     }),
   ],
   pages: {
-    signIn: "/auth/signin", // custom sign-in page (optional)
+    signIn: "/auth/signin",
+    error: "/auth/signin"
+  },
+  session: {
+    maxAge: 1 * 60 * 60,
+    updateAge: 1 * 60 * 60,
+    strategy: "jwt",
   },
   callbacks: {
     async session({ session, token }) {
@@ -58,6 +55,7 @@ const handler = NextAuth({
         session.user.name = token.name;
         session.user.email = token.email;
         session.user.status = token.status;
+        session.user.img_url = token.img_url
       }
       return session;
     },
@@ -66,7 +64,8 @@ const handler = NextAuth({
         token.id = user.id;
         token.name = user.name;
         token.email = user.email;
-        token.status = user.status; // if exists
+        token.status = user.status;
+        token.img_url = user.img_url;
       }
       return token;
     }
