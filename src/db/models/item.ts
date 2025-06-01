@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '@/db/sequelize'
+import sequelize from '../sequelize';
 
 const Item = sequelize.define('Item', {
   id: {
@@ -16,33 +16,33 @@ const Item = sequelize.define('Item', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-  img_url: {
+  price: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 0,
+  },
+  points_price: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 0,
+  },
+  category: {
+    type: DataTypes.ENUM('special', 'normal', 'paid'),
+    allowNull: false,
+    defaultValue: 'normal',
+  },
+  image_url: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  type: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  money_price: {
-    type: DataTypes.DECIMAL(10, 2),
-    allowNull: false,
-  },
-  point_price: {
+  stock: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  },
-  count: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  existed_until: {
-    type: DataTypes.DATE,
-    allowNull: false,
-  },
+    defaultValue: 0,
+  }
 }, {
   tableName: 'items',
-  timestamps: true, // createdAt and updatedAt will be handled automatically
+  timestamps: true, // Ini akan membuat created_at dan updated_at
 });
 
 export default Item;

@@ -42,24 +42,27 @@ export default function Leaderboard() {
 
         {/* <LeaderboardTopThree /> */}
         <div className="w-full h-auto flex justify-center gap-4 my-4">
-          <div 
-          className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 mt-8 bg-gray-200 shadow-lg">
-            <h1 className="text-5xl mb-2"><b>2#</b></h1>
-            <p className="text-center">{users && users[1].name}</p>
-            <p className="text-center">{users && users[1].monthly_points} Pts</p>
-          </div>
-          <div 
-          className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 bg-yellow-200 shadow-lg">
-            <h1 className="text-5xl mb-2"><b>1#</b></h1>
-            <p className="text-center">{users && users[0].name}</p>
-            <p className="text-center">{users && users[0].monthly_points} Pts</p>
-          </div>
-          <div 
-          className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 mt-16 bg-orange-200 shadow-lg">
-            <h1 className="text-5xl mb-2"><b>3#</b></h1>
-            <p className="text-center">{users && users[2].name}</p>
-            <p className="text-center">{users && users[2].monthly_points} Pts</p>
-          </div>
+          {users && users.length >= 2 && (
+            <div className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 mt-8 bg-gray-200 shadow-lg">
+              <h1 className="text-5xl mb-2"><b>2#</b></h1>
+              <p className="text-center">{users[1].name}</p>
+              <p className="text-center">{users[1].monthly_points} Pts</p>
+            </div>
+          )}
+          {users && users.length >= 1 && (
+            <div className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 bg-yellow-200 shadow-lg">
+              <h1 className="text-5xl mb-2"><b>1#</b></h1>
+              <p className="text-center">{users[0].name}</p>
+              <p className="text-center">{users[0].monthly_points} Pts</p>
+            </div>
+          )}
+          {users && users.length >= 3 && (
+            <div className="border-white border flex justify-end rounded-lg items-end font-sans flex-col items-center w-auto py-6 px-12 mt-16 bg-orange-200 shadow-lg">
+              <h1 className="text-5xl mb-2"><b>3#</b></h1>
+              <p className="text-center">{users[2].name}</p>
+              <p className="text-center">{users[2].monthly_points} Pts</p>
+            </div>
+          )}
         </div>
 
         {/* <LeaderboardRankings/> */}

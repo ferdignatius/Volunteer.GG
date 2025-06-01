@@ -1,29 +1,20 @@
 "use client";
-import React from "react";
 
-interface Props {
-  search: string
-  handleSearch: (search: string) => void
+interface SearchBarProps {
+  placeholder?: string;
 }
 
-const SearchBar = ({ search, handleSearch }: Props) => {
+export default function SearchBar({ placeholder }: SearchBarProps) {
   return (
-    <form className="flex items-center w-full h-12 bg-gray-200 rounded-md overflow-hidden border border-gray-300 shadow-sm">
+    <div className="relative">
       <input
         type="text"
-        className="flex-grow px-4 py-2 text-gray-700 placeholder-gray-500 text-base bg-transparent border-none outline-none"
-        placeholder="Search anything you want ..."
-        value={search}
-        onChange={(e) => handleSearch(e.target.value)}
+        placeholder={placeholder || "Search..."}
+        className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-200"
       />
-      <div
-        aria-label="Search"
-        className="flex items-center justify-center px-4 py-2 text-gray-800 transition rounded-full"
-      >
-        <span className="text-xl">&#x1F50D;</span>
-      </div>
-    </form>
+      <button className="absolute right-3 top-1/2 -translate-y-1/2">
+        🔍
+      </button>
+    </div>
   );
-};
-
-export default SearchBar
+}

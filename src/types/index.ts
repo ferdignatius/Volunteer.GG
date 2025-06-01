@@ -37,3 +37,16 @@ export type {
   UserRelationAttributes,
   ErrorAttributes
 }
+
+export interface ItemAttributes {
+  id: number;
+  name: string;
+  description?: string;
+  price?: number;
+  points_price?: number;
+  category: 'special' | 'normal' | 'paid';
+  image_url?: string;
+  stock: number;
+  created_at?: Date;
+  updated_at?: Date;
+}

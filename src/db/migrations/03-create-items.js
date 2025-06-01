@@ -1,7 +1,8 @@
 'use strict';
 
+/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up(queryInterface, Sequelize) {
     await queryInterface.createTable('items', {
       id: {
         allowNull: false,
@@ -17,36 +18,36 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: true
       },
-      img_url: {
+      price: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0
+      },
+      points_price: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        defaultValue: 0
+      },
+      category: {
+        type: Sequelize.ENUM('special', 'normal', 'paid'),
+        allowNull: false,
+        defaultValue: 'normal'
+      },
+      image_url: {
         type: Sequelize.STRING,
         allowNull: true
       },
-      type: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      money_price: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
-      point_price: {
+      stock: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 0
       },
-      count: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      existed_until: {
-        type: Sequelize.DATE,
-        allowNull: false
-      },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
@@ -54,7 +55,7 @@ module.exports = {
     });
   },
 
-  down: async (queryInterface, Sequelize) => {
+  async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('items');
   }
 };
